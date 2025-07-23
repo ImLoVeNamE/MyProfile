@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зеленое будущее | Экологическая инициатива</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --eco-primary: #2E7D32;
+            --eco-secondary: #4CAF50;
+            --eco-light: #8BC34A;
+            --eco-accent: #FFEB3B;
+            --eco-dark: #1B5E20;
+            --eco-bg: #E8F5E9;
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--eco-bg), #ffffff);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        /* Листья в фоне */
+        .leaf-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,10 C60,5 75,15 80,30 C85,45 75,60 60,65 C45,70 30,60 25,45 C20,30 30,15 40,10 C45,8 50,10 50,10 Z" fill="%232E7D32"/></svg>');
+            background-size: 200px;
+            background-repeat: repeat;
+        }
+
+        /* Навигация */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 5%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.5s ease;
+            background: rgba(232, 245, 233, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-scrolled {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 5%;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--eco-primary), var(--eco-accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            animation: leaf-float 4s ease-in-out infinite;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--eco-dark);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--eco-secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--eco-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Секции */
+        section {
+            min-height: 100vh;
+            padding: 120px 10% 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--eco-primary);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -15px;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--eco-secondary), var(--eco-accent));
+            border-radius: 2px;
+        }
+
+        /* Герой-секция */
+        .hero {
+            position: relative;
+            text-align: center;
+            padding-top: 180px;
+            background: linear-gradient(to bottom, rgba(232, 245, 233, 0.8), rgba(255, 255, 255, 0.5));
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--eco-dark), var(--eco-primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--eco-secondary);
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #444;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, var(--eco-primary), var(--eco-dark));
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--eco-secondary), var(--eco-accent));
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(46, 125, 50, 0.4);
+        }
+
+        /* Стеклянные карточки */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--eco-secondary), var(--eco-light), var(--eco-accent), var(--eco-primary));
+            background-size: 400%;
+            z-index: -1;
+            border-radius: 22px;
+            animation: gradient-border 10s linear infinite;
+        }
+
+        @keyframes gradient-border {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+
+        /* Проблемы экологии */
+        .problems-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .problem-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: all 0.4s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .problem-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--eco-primary);
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover .problem-icon {
+            transform: scale(1.2);
+            color: var(--eco-dark);
+        }
+
+        .problem-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--eco-dark);
+        }
+
+        /* Решения */
+        .solutions-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .solution-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 300px;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: all 0.5s ease;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-15px);
+        }
+
+        .solution-image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+            position: relative;
+        }
+
+        .solution-card:hover .solution-image {
+            transform: scale(1.1);
+        }
+
+        .solution-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(27, 94, 32, 0.9));
+            transform: translateY(100px);
+            transition: transform 0.5s ease;
+            color: white;
+        }
+
+        .solution-card:hover .solution-overlay {
+            transform: translateY(0);
+        }
+
+        .solution-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--eco-accent);
+        }
+
+        /* Как помочь */
+        .help-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .help-card {
+            position: relative;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: all 0.4s ease;
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .help-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .help-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--eco-accent);
+            transition: all 0.3s ease;
+        }
+
+        .help-card:hover .help-icon {
+            transform: scale(1.2) rotate(10deg);
+            color: var(--eco-primary);
+        }
+
+        .help-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--eco-dark);
+        }
+
+        /* Присоединиться */
+        .join-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .join-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .join-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .join-icon {
+            font-size: 1.8rem;
+            color: var(--eco-primary);
+            transition: all 0.3s ease;
+        }
+
+        .join-item:hover .join-icon {
+            transform: scale(1.2) rotate(5deg);
+            color: var(--eco-accent);
+        }
+
+        .join-text h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--eco-dark);
+        }
+
+        .join-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .join-form input,
+        .join-form textarea,
+        .join-form select {
+            width: 100%;
+            padding: 15px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: #333;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .join-form input:focus,
+        .join-form textarea:focus,
+        .join-form select:focus {
+            outline: none;
+            border-color: var(--eco-secondary);
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+        }
+
+        /* Футер */
+        footer {
+            padding: 30px 10%;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            background: rgba(232, 245, 233, 0.8);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: white;
+            color: var(--eco-primary);
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-icon:hover {
+            background: var(--eco-primary);
+            color: white;
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(46, 125, 50, 0.3);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            color: var(--eco-dark);
+        }
+
+        /* Анимации */
+        @keyframes leaf-float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes leaf-fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .leaf {
+            position: absolute;
+            top: -50px;
+            width: 30px;
+            height: 30px;
+            background: var(--eco-primary);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: leaf-fall linear forwards;
+            z-index: -1;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .join-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .solutions-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.6rem;
+            }
+            
+            section {
+                padding: 100px 5% 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Листья в фоне -->
+    <div class="leaf-bg"></div>
+    
+    <!-- Анимированные падающие листья -->
+    <div class="leaves-container"></div>
+
+    <!-- Навигация -->
+    <nav>
+        <a href="#" class="logo"><i class="fas fa-leaf"></i>ЗЕЛЁНОЕ БУДУЩЕЕ</a><p>данный сайт является образцом</p>
+        <div class="nav-links">
+            <a href="#problems">Проблемы</a>
+            <a href="#solutions">Решения</a>
+            <a href="#help">Как помочь</a>
+            <a href="#join">Присоединиться</a>
+        </div>
+    </nav>
+
+    <!-- Герой-секция -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>СОХРАНИМ ПЛАНЕТУ ВМЕСТЕ</h1>
+            <h2>Экологическая инициатива для устойчивого будущего</h2>
+            <p>Присоединяйтесь к движению за чистую планету. Наши действия сегодня определяют мир завтрашнего дня. Вместе мы можем изменить будущее!</p>
+            <a href="#join" class="cta-button">Стать частью изменений</a>
+        </div>
+    </section>
+
+    <!-- Проблемы экологии -->
+    <section id="problems" class="problems">
+        <h2 class="section-title">Экологические проблемы</h2>
+        <div class="problems-container">
+            <div class="glass-card problem-card">
+                <i class="fas fa-fire problem-icon"></i>
+                <h3 class="problem-title">Изменение климата</h3>
+                <p>Глобальное потепление, вызванное выбросами парниковых газов, приводит к экстремальным погодным условиям, таянию ледников и повышению уровня моря.</p>
+            </div>
+            <div class="glass-card problem-card">
+                <i class="fas fa-trash problem-icon"></i>
+                <h3 class="problem-title">Загрязнение пластиком</h3>
+                <p>Ежегодно в океаны попадает более 8 миллионов тонн пластика, что приводит к гибели морских обитателей и попаданию микропластика в пищевую цепь.</p>
+            </div>
+            <div class="glass-card problem-card">
+                <i class="fas fa-tree problem-icon"></i>
+                <h3 class="problem-title">Вырубка лесов</h3>
+                <p>Каждую минуту уничтожаются леса размером с 40 футбольных полей, что приводит к потере биоразнообразия и нарушению экосистем.</p>
+            </div>
+            <div class="glass-card problem-card">
+                <i class="fas fa-tint problem-icon"></i>
+                <h3 class="problem-title">Дефицит воды</h3>
+                <p>Более 2 миллиардов человек живут в странах с высоким уровнем дефицита воды, а к 2025 году половина мирового населения может столкнуться с нехваткой воды.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Решения -->
+    <section id="solutions" class="solutions">
+        <h2 class="section-title">Наши решения</h2>
+        <div class="solutions-container">
+            <div class="solution-card">
+                <div class="solution-image" style="background-image: url('https://images.unsplash.com/photo-1616469829476-4b7b0da6a74c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="solution-overlay glass-card">
+                    <h3 class="solution-title">Возобновляемая энергия</h3>
+                    <p>Переход на солнечные, ветровые и гидроэнергетические источники для сокращения выбросов CO2.</p>
+                </div>
+            </div>
+            <div class="solution-card">
+                <div class="solution-image" style="background-image: url('https://images.unsplash.com/photo-1601924994987-69e26d50dc26?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="solution-overlay glass-card">
+                    <h3 class="solution-title">Устойчивое сельское хозяйство</h3>
+                    <p>Внедрение методов органического земледелия и пермакультуры для сохранения почв и биоразнообразия.</p>
+                </div>
+            </div>
+            <div class="solution-card">
+                <div class="solution-image" style="background-image: url('https://images.unsplash.com/photo-1587351021759-7a2d5d76c889?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                <div class="solution-overlay glass-card">
+                    <h3 class="solution-title">Циклическая экономика</h3>
+                    <p>Внедрение принципов "reduce, reuse, recycle" для минимизации отходов и сохранения ресурсов.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Как помочь -->
+    <section id="help" class="help">
+        <h2 class="section-title">Как вы можете помочь</h2>
+        <div class="help-container">
+            <div class="glass-card help-card">
+                <i class="fas fa-recycle help-icon"></i>
+                <h3 class="help-title">Сортируйте отходы</h3>
+                <p>Разделяйте мусор и сдавайте перерабатываемые материалы</p>
+            </div>
+            <div class="glass-card help-card">
+                <i class="fas fa-bolt help-icon"></i>
+                <h3 class="help-title">Экономьте энергию</h3>
+                <p>Используйте энергосберегающие приборы и выключайте свет</p>
+            </div>
+            <div class="glass-card help-card">
+                <i class="fas fa-shopping-bag help-icon"></i>
+                <h3 class="help-title">Покупайте осознанно</h3>
+                <p>Выбирайте продукты с минимальной упаковкой и местного производства</p>
+            </div>
+            <div class="glass-card help-card">
+                <i class="fas fa-leaf help-icon"></i>
+                <h3 class="help-title">Озеленяйте пространство</h3>
+                <p>Сажайте деревья и создавайте зеленые зоны вокруг себя</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Присоединиться -->
+    <section id="join" class="join">
+        <h2 class="section-title">Присоединяйтесь к нам</h2>
+        <div class="join-container">
+            <div class="join-info">
+                <div class="glass-card">
+                    <div class="join-item">
+                        <i class="fas fa-calendar-check join-icon"></i>
+                        <div class="join-text">
+                            <h4>События</h4>
+                            <p>Участвуйте в экологических акциях и мероприятиях</p>
+                        </div>
+                    </div>
+                    <div class="join-item">
+                        <i class="fas fa-hands-helping join-icon"></i>
+                        <div class="join-text">
+                            <h4>Волонтерство</h4>
+                            <p>Станьте волонтером в наших экологических проектах</p>
+                        </div>
+                    </div>
+                    <div class="join-item">
+                        <i class="fas fa-graduation-cap join-icon"></i>
+                        <div class="join-text">
+                            <h4>Образование</h4>
+                            <p>Посещайте наши лекции и мастер-классы по экологии</p>
+                        </div>
+                    </div>
+                    <div class="join-item">
+                        <i class="fas fa-lightbulb join-icon"></i>
+                        <div class="join-text">
+                            <h4>Идеи</h4>
+                            <p>Предлагайте свои идеи для экологических инициатив</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="join-form">
+                <div class="glass-card">
+                    <h3>Стать частью движения</h3>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Ваш Email" required>
+                        </div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="" disabled selected>Выберите область участия</option>
+                                <option value="volunteer">Волонтерство</option>
+                                <option value="events">Участие в мероприятиях</option>
+                                <option value="donation">Финансовая поддержка</option>
+                                <option value="ideas">Предложить идею</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Ваше сообщение или идея" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button">Присоединиться</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-telegram-plane"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p class="copyright">© 2023 Зеленое будущее. Все права защищены. Сделано с любовью для нашей планеты</p>
+    </footer>
+
+    <script>
+        // Создаем падающие листья
+        function createLeaves() {
+            const container = document.querySelector('.leaves-container');
+            const leafCount = 15;
+            
+            for (let i = 0; i < leafCount; i++) {
+                const leaf = document.createElement('div');
+                leaf.classList.add('leaf');
+                
+                // Случайные свойства
+                const size = Math.random() * 20 + 10;
+                const left = Math.random() * 100;
+                const delay = Math.random() * 10;
+                const duration = Math.random() * 10 + 10;
+                const colorVar = Math.random() > 0.7 ? '--eco-light' : 
+                                Math.random() > 0.5 ? '--eco-secondary' : '--eco-primary';
+                
+                leaf.style.width = `${size}px`;
+                leaf.style.height = `${size}px`;
+                leaf.style.left = `${left}vw`;
+                leaf.style.animationDelay = `${delay}s`;
+                leaf.style.animationDuration = `${duration}s`;
+                leaf.style.backgroundColor = `var(${colorVar})`;
+                
+                container.appendChild(leaf);
+            }
+        }
+
+        // Эффект при прокрутке для навигации
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Анимация появления элементов
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Инициализация при загрузке
+        window.addEventListener('load', () => {
+            createLeaves();
+        });
+    </script>
+</body>
+</html>

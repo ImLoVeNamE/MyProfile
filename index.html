@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Станислав | Full-stack разработчик</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --primary: #0a0c17;
+            --secondary: #121420;
+            --accent: #ff2a6d;
+            --accent2: #05d9e8;
+            --light: #f1f7ff;
+            --glass: rgba(20, 22, 40, 0.7);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --card-bg: rgba(18, 20, 36, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary), #070917);
+            color: var(--light);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 0;
+            position: relative;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        header {
+            background: rgba(13, 15, 32, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(255, 42, 109, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(255, 42, 109, 0.5);
+            transition: var(--transition);
+            position: relative;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background: linear-gradient(90deg, var(--accent), var(--accent2)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 20px rgba(255, 42, 109, 0.7);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin: 0 10px;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 30px;
+            transition: var(--transition);
+            position: relative;
+            background: rgba(255, 42, 109, 0.1);
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 42, 109, 0.3), transparent);
+            transition: 0.5s;
+        }
+
+        nav a:hover::before {
+            left: 100%;
+        }
+
+        nav a:hover {
+            background: rgba(255, 42, 109, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 42, 109, 0.3);
+        }
+
+        nav a.active {
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            color: var(--primary);
+            box-shadow: 0 5px 20px rgba(255, 42, 109, 0.5);
+        }
+
+        /* Основное содержимое */
+        .content {
+            margin: 60px auto;
+        }
+
+        /* Секция "Я" */
+        #about {
+            display: flex;
+            padding: 60px 40px;
+            flex-wrap: wrap;
+            align-items: center;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 42, 109, 0.15);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        #about:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 42, 109, 0.2);
+        }
+
+        #about::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,42,109,0.1) 0%, rgba(5,217,232,0) 70%);
+            z-index: -1;
+        }
+
+        .photo-container {
+            flex: 0 0 300px;
+            margin-right: 60px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            height: 300px;
+            background: linear-gradient(45deg, var(--accent), var(--accent2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 2px solid rgba(255, 42, 109, 0.5);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: var(--transition);
+            z-index: 2;
+        }
+
+        .photo-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent, rgba(10, 12, 33, 0.5));
+            z-index: 1;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            transition: var(--transition);
+        }
+
+        .photo-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .info h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(255, 42, 109, 0.3);
+            animation: textGlow 2s infinite alternate;
+        }
+
+        .info h2 {
+            font-size: 28px;
+            margin-bottom: 25px;
+            color: var(--accent2);
+            position: relative;
+            display: inline-block;
+        }
+
+        .info h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            border-radius: 2px;
+        }
+
+        .info p {
+            margin-bottom: 20px;
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--light);
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .skill {
+            background: var(--card-bg);
+            color: var(--light);
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 42, 109, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            z-index: -1;
+            clip-path: circle(0% at 0% 50%);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .skill:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 42, 109, 0.3);
+            color: var(--primary);
+        }
+
+        .skill:hover::before {
+            clip-path: circle(150% at 0% 50%);
+        }
+
+        /* Секция проектов */
+        #projects {
+            padding: 80px 40px;
+            margin-top: 80px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(5, 217, 232, 0.15);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        #projects:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(5, 217, 232, 0.2);
+        }
+
+        #projects::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(5,217,232,0.1) 0%, rgba(255,42,109,0) 70%);
+            z-index: -1;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 42px;
+            position: relative;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            margin: 20px auto;
+            border-radius: 2px;
+            box-shadow: 0 0 15px rgba(5, 217, 232, 0.5);
+        }
+
+        .projects-toc {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            perspective: 1500px;
+        }
+
+        .toc-item {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            border: 1px solid rgba(5, 217, 232, 0.2);
+            cursor: pointer;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(5deg) rotateY(0deg);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+
+        .toc-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .toc-item:hover {
+            transform: rotateX(0deg) rotateY(5deg) translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(5, 217, 232, 0.3);
+            border-color: var(--accent2);
+        }
+
+        .toc-item:hover::before {
+            opacity: 0.1;
+        }
+
+        .toc-header {
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            color: var(--primary);
+            padding: 25px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .toc-header i {
+            margin-right: 15px;
+            font-size: 28px;
+            transition: var(--transition);
+        }
+
+        .toc-item:hover .toc-header {
+            background: linear-gradient(90deg, #ff005e, #00f7ff);
+        }
+
+        .toc-item:hover .toc-header i {
+            transform: rotate(15deg) scale(1.2);
+        }
+
+        .toc-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            background: rgba(13, 15, 32, 0.5);
+        }
+
+        .toc-file {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            background: rgba(5, 217, 232, 0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .toc-file::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(0deg, var(--accent), var(--accent2));
+            transition: var(--transition);
+        }
+
+        .toc-file:hover {
+            background: rgba(5, 217, 232, 0.2);
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(5, 217, 232, 0.2);
+        }
+
+        .toc-file:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .file-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(5, 217, 232, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .file-info {
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .file-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--accent2);
+        }
+
+        .file-desc {
+            font-size: 14px;
+            color: rgba(241, 247, 255, 0.7);
+        }
+
+        /* Секция контактов */
+        #contact {
+            padding: 80px 40px;
+            margin-top: 80px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 42, 109, 0.15);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        #contact:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 42, 109, 0.2);
+        }
+
+        #contact::before {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,42,109,0.1) 0%, rgba(5,217,232,0) 70%);
+            z-index: -1;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .form-group {
+            text-align: left;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: var(--accent2);
+            font-size: 18px;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .form-group label::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 80%;
+            background: linear-gradient(0deg, var(--accent), var(--accent2));
+            border-radius: 2px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 18px;
+            border: 2px solid rgba(255, 42, 109, 0.3);
+            border-radius: 15px;
+            font-size: 18px;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--light);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent2);
+            outline: none;
+            box-shadow: 0 0 20px rgba(5, 217, 232, 0.3);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            color: var(--primary);
+            border: none;
+            padding: 18px;
+            border-radius: 15px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 5px 20px rgba(255, 42, 109, 0.3);
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 42, 109, 0.5);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--light);
+            transition: var(--transition);
+        }
+
+        .social-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 20px rgba(255, 42, 109, 0.3);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff005e, #00f7ff);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .social-links a:hover .social-icon {
+            transform: translateY(-8px) rotate(5deg);
+            box-shadow: 0 10px 30px rgba(255, 42, 109, 0.5);
+        }
+
+        .social-links a:hover .social-icon::before {
+            opacity: 1;
+        }
+
+        .social-text {
+            font-size: 16px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover .social-text {
+            color: var(--accent2);
+            text-shadow: 0 0 10px rgba(5, 217, 232, 0.5);
+        }
+
+        /* Футер */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--light);
+            background: rgba(13, 15, 32, 0.85);
+            margin-top: 80px;
+            border-radius: 30px 30px 0 0;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 42, 109, 0.4);
+        }
+
+        .copyright {
+            font-size: 18px;
+            margin-top: 30px;
+            color: rgba(241, 247, 255, 0.7);
+        }
+
+        /* Анимации */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 42, 109, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 42, 109, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 42, 109, 0); }
+        }
+
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 10px rgba(255, 42, 109, 0.3); }
+            100% { text-shadow: 0 0 20px rgba(5, 217, 232, 0.5); }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .photo-container {
+                margin-right: 30px;
+            }
+            
+            .info h1 {
+                font-size: 42px;
+            }
+            
+            .info h2 {
+                font-size: 24px;
+            }
+            
+            .toc-header {
+                padding: 20px;
+                font-size: 22px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #about {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 40px 20px;
+            }
+            
+            .photo-container {
+                margin-right: 0;
+                margin-bottom: 40px;
+                transform: perspective(1000px) rotateY(0deg);
+            }
+            
+            .info h2::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .skills {
+                justify-content: center;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                color: var(--light);
+                font-size: 28px;
+                cursor: pointer;
+            }
+            
+            .projects-toc {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .photo-container {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .info h1 {
+                font-size: 36px;
+            }
+            
+            .info h2 {
+                font-size: 22px;
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+            
+            .social-links {
+                flex-wrap: wrap;
+            }
+            
+            .toc-item {
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <!-- Шапка с навигацией -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">S.Dev</div>
+                <ul>
+                    <li><a href="#about" class="active">Я</a></li>
+                    <li><a href="#projects">Проекты</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основное содержимое -->
+    <div class="container">
+        <div class="content">
+            <!-- Секция "Я" -->
+            <section id="about">
+                <div class="photo-container float">
+                    <img src="https://i.pinimg.com/originals/92/07/05/9207052f16d043e490ee253a7335d7b5.jpg">
+                </div>
+                <div class="info">
+                    <h1>Станислав</h1>
+                    <h2>Full-stack разработчик</h2>
+                    <p>Привет! Я разработчик с более чем 1-летним стажем работы над разнообразными проектами. Специализируюсь на создании современных веб-приложений с использованием передовых технологий.</p>
+                    <p>Моя страсть - создавать интуитивно понятные и эффективные решения для сложных задач. Я постоянно изучаю новые технологии и совершенствую свои навыки.</p>
+                    
+                    <div class="skills">
+                        <div class="skill pulse">JavaScript</div>
+                        <div class="skill pulse">Python</div>
+                        <div class="skill pulse">Django</div>
+                        <div class="skill pulse">SQL</div>
+                        <div class="skill pulse">Docker</div>
+                        <div class="skill pulse">Git</div>
+                        <div class="skill pulse">React</div>
+                        <div class="skill pulse">Node.js</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция проектов -->
+            <section id="projects">
+                <h2 class="section-title">Мои проекты</h2>
+                <div class="projects-toc">
+                    <!-- Проект 1: Визитка свадьбы -->
+                    <div class="toc-item">
+                        <div class="toc-header">
+                            <i class="fas fa-heart"></i>
+                            Визитка свадьбы
+                        </div>
+                        <div class="toc-content">
+                            <div class="toc-file" onclick="window.open('wedding.html', '_blank')">
+                                <div class="file-icon">
+                                    <i class="fab fa-html5"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">Свадебный сайт (wedding.html)</div>
+                                    <div class="file-desc">Элегантный сайт-визитка для свадьбы</div>
+                                </div>
+                            </div>
+                            <div class="toc-file">
+                                <div class="file-icon">
+                                    <i class="fab fa-css3-alt"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">Стили сайта (styles.css)</div>
+                                    <div class="file-desc">CSS стили для свадебного сайта</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Проект 2: Телеграмм бот -->
+                    <div class="toc-item">
+                        <div class="toc-header">
+                            <i class="fab fa-telegram"></i>
+                            Телеграмм бот
+                        </div>
+                        <div class="toc-content">
+                            <div class="toc-file">
+                                <div class="file-icon">
+                                    <i class="fab fa-python"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">Бот для Telegram (bot.py)</div>
+                                    <div class="file-desc">Бот для управления задачами</div>
+                                </div>
+                            </div>
+                            <div class="toc-file">
+                                <div class="file-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">Зависимости (requirements.txt)</div>
+                                    <div class="file-desc">Список необходимых библиотек</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Проект 3: Резюме дизайнера -->
+                    <div class="toc-item">
+                        <div class="toc-header">
+                            <i class="fas fa-palette"></i>
+                            Резюме дизайнера
+                        </div>
+                        <div class="toc-content">
+                            <div class="toc-file" onclick="window.open('portfolio.html', '_blank')">
+                                <div class="file-icon">
+                                    <i class="fab fa-html5"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">Портфолио (portfolio.html)</div>
+                                    <div class="file-desc">Минималистичное портфолио дизайнера</div>
+                                </div>
+                            </div>
+                            <div class="toc-file">
+                                <div class="file-icon">
+                                    <i class="fab fa-js"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">Анимации (design.js)</div>
+                                    <div class="file-desc">JavaScript для 3D эффектов</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Проект 4: Резюме архитектора -->
+                    <div class="toc-item">
+                        <div class="toc-header">
+                            <i class="fa fa-industry" aria-hidden="true"></i>
+                            Резюме архитектора
+                        </div>
+                        <div class="toc-content">
+                            <div class="toc-file" onclick="window.open('portfolio2.html', '_blank')">
+                                <div class="file-icon">
+                                    <i class="fab fa-html5"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">Портфолио (portfolio2.html)</div>
+                                    <div class="file-desc">Портфолио архитектора</div>
+                                </div>
+                            </div>
+                            <div class="toc-file">
+                                <div class="file-icon">
+                                    <i class="fab fa-js"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">Анимации (design.js)</div>
+                                    <div class="file-desc">JavaScript для 3D эффектов</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Проект 5: Сайт презентация -->
+                    <div class="toc-item">
+                        <div class="toc-header">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            Сайт-презентация
+                        </div>
+                        <div class="toc-content">
+                            <div class="toc-file" onclick="window.open('present.html', '_blank')">
+                                <div class="file-icon">
+                                    <i class="fab fa-html5"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">Сайт-презентация (present.html)</div>
+                                    <div class="file-desc">Оригинальный способ представления презентации</div>
+                                </div>
+                            </div>
+                            <div class="toc-file"">
+                                <div class="file-icon">
+                                    <i class="fab fa-css3-alt"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">Стили сайта (styles.css)</div>
+                                    <div class="file-desc">CSS стили для сайта</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Проект 6: Приглашение на свидание -->
+                    <div class="toc-item">
+                        <div class="toc-header">
+                            <i class="fas fa-heart"></i>
+                            Приглашение на свидание
+                        </div>
+                        <div class="toc-content">
+                            <div class="toc-file" onclick="window.open('ticket.html', '_blank')">
+                                <div class="file-icon">
+                                    <i class="fab fa-html5"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">Сайт приглашение (ticket.html)</div>
+                                    <div class="file-desc">Элегантный сайт-приглашение</div>
+                                </div>
+                            </div>
+                            <div class="toc-file">
+                                <div class="file-icon">
+                                    <i class="fab fa-css3-alt"></i>
+                                </div>
+                                <div class="file-info">
+                                    <div class="file-name">Стили сайта (styles.css)</div>
+                                    <div class="file-desc">CSS стили для сайта</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <!-- Секция контактов -->
+            <section id="contact">
+                <h2 class="section-title">Связь со мной</h2>
+                <div class="contact-container">
+                    <div class="social-links">
+                        <a href="https://t.me/imlovename" target="_blank">
+                            <div class="social-icon">
+                                <i class="fab fa-telegram"></i>
+                            </div>
+                            <span class="social-text">Telegram</span>
+                        </a>
+                        <a href="https://github.com/ImLoVeNamE" target="_blank">
+                            <div class="social-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <span class="social-text">GitHub</span>
+                        </a>
+                        <a href="https://vk.com/imlovename" target="_blank">
+                            <div class="social-icon">
+                                <i class="fab fa-vk"></i>
+                            </div>
+                            <span class="social-text">VK</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">S.Dev</div>
+                <p>Full-stack разработка современных веб-приложений</p>
+                <div class="copyright">© 2025 Мое резюме. Все права защищены. Копирование запрещено.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Инициализация частиц
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 120, density: { enable: true, value_area: 1000 } },
+                color: { value: "#ff2a6d" },
+                shape: { type: "circle" },
+                opacity: { value: 0.3, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#05d9e8",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
+        // Навигация
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Удаляем активный класс у всех ссылок
+                document.querySelectorAll('nav a').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Добавляем активный класс текущей ссылке
+                this.classList.add('active');
+                
+                // Плавная прокрутка к секции
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                window.scrollTo({
+                    top: targetSection.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Отправка формы
+        const contactForm = document.querySelector('.contact-form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Создаем эффект отправки
+            const submitBtn = this.querySelector('.submit-btn');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+            submitBtn.disabled = true;
+            
+            // Имитация отправки
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Отправлено!';
+                submitBtn.style.background = 'linear-gradient(90deg, #00c853, #64dd17)';
+                
+                // Сбрасываем форму через 2 секунды
+                setTimeout(() => {
+                    contactForm.reset();
+                    submitBtn.innerHTML = 'Отправить сообщение';
+                    submitBtn.style.background = 'linear-gradient(90deg, var(--accent), var(--accent2))';
+                    submitBtn.disabled = false;
+                }, 2000);
+            }, 1500);
+        });
+        
+        // Автоматическое выделение активного раздела при прокрутке
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Параллакс эффект для карточек проектов
+        const tocItems = document.querySelectorAll('.toc-item');
+        
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            tocItems.forEach(item => {
+                const itemRect = item.getBoundingClientRect();
+                const itemCenterX = itemRect.left + itemRect.width / 2;
+                const itemCenterY = itemRect.top + itemRect.height / 2;
+                
+                const deltaX = (e.clientX - itemCenterX) / 50;
+                const deltaY = (e.clientY - itemCenterY) / 50;
+                
+                item.style.transform = `rotateX(${deltaY * -1}deg) rotateY(${deltaX}deg) translateY(-15px)`;
+            });
+        });
+
+        // Анимация появления элементов при прокрутке
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('#about, #projects, #contact').forEach(section => {
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
